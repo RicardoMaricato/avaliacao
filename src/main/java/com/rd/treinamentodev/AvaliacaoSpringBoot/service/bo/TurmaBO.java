@@ -12,6 +12,8 @@ import java.util.List;
 @Component
 public class TurmaBO {
 
+    // Esse infelizmente não saiu ://
+
 /*    public TurmaDTO parseToDTO(TurmaEntity entity) {
         TurmaDTO dto = new TurmaDTO();
 
