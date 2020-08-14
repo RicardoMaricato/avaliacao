@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AlunoService {
 
@@ -16,7 +18,11 @@ public class AlunoService {
     private AlunoRepository alunoRepository;
 
 
-    public ResponseEntity gravar(AlunoDTO alunoDTO){
+    public ResponseEntity gravar(AlunoDTO alunoDTO) throws Exception {
+        List<AlunoEntity> aluno = alunoRepository.findByCpf(alunoDTO.getCpf());
+        if (aluno.get(0).getCpf().equals(alunoDTO.getCpf()))
+            throw new Exception("Este CPF: " + alunoDTO.getCpf() + " já existe!");
+
         AlunoEntity entity = new AlunoEntity();
         entity.setNomeAluno(alunoDTO.getNome());
         entity.setCpf(alunoDTO.getCpf());
